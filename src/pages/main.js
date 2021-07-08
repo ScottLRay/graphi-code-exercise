@@ -5,13 +5,15 @@ import Card from "../components/cards"
 
 const GET_LAUNCHES = gql`
   {
-    launchesPast(limit: 10) {
+    launchesPast(limit: 12) {
       mission_name
       details
       id
       links {
         flickr_images
         article_link
+        video_link
+        mission_patch
       }
     }
   }
@@ -28,7 +30,7 @@ function Launches() {
          key={id}
          title={mission_name}
          details={details}
-         image={(links.flickr_images)}
+         image={(links.flickr_images=== 0) ? (<h2>no results</h2>) : (links.mission_patch)}
          article={(links.article_link)}
         />
       ))
