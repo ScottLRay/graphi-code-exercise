@@ -4,7 +4,7 @@ import { useQuery } from "react-apollo-hooks";
 
 const GET_LAUNCHES = gql`
   {
-    launchesPast {
+    launchesPast(limit: 10) {
       mission_name
       details
       links {
@@ -13,8 +13,10 @@ const GET_LAUNCHES = gql`
     }
   }
 `;
-export default () => {
+function Launches() {
   const { errors, loading, data } = useQuery(GET_LAUNCHES);
+
+  const getRandomImg = (imgs) => imgs[Math.floor(Math.random() * imgs.length)];
 
   return errors
     ? "Error!"
@@ -27,6 +29,6 @@ export default () => {
           <img src={getRandomImg(links.flickr_images)} width="200" />
         </div>
       ));
-};
+}
 
-const getRandomImg = imgs => imgs[Math.floor(Math.random() * imgs.length)];
+export default Launches;
