@@ -1,31 +1,23 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
 
-function cards({ details, image, title }) {
+
+function cards({ details, image, title, article }) {
   return (
-    <>
-      <div className="jumbotron card-container">
-        <Row>
-          <Col xs={6} md={4}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={image} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{details}</Card.Text>
-                {/* <Button variant="primary">Go somewhere</Button> */}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    <div className="card" style={{ width: "18rem" }}>
+      <img src={image} className="card-img-top" />
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">
+         {details}
+        </p>
+        <a href={article} className="btn btn-primary">
+          Link to the article
+        </a>
       </div>
-    </>
+    </div>
   );
 }
 
 export default cards;
 
-// <div key={mission_name}>
-//           <h1>🛰 {mission_name}</h1>
-//           <p>{details}</p>
-//           <img src={(links.flickr_images)} width="200" />
-//         </div>
+

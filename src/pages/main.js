@@ -8,8 +8,10 @@ const GET_LAUNCHES = gql`
     launchesPast(limit: 10) {
       mission_name
       details
+      id
       links {
         flickr_images
+        article_link
       }
     }
   }
@@ -17,20 +19,20 @@ const GET_LAUNCHES = gql`
 function Launches() {
   const { errors, loading, data } = useQuery(GET_LAUNCHES);
 
-  // const getRandomImg = (imgs) => imgs[Math.floor(Math.random() * imgs.length)];
-
-  return errors
+  return( errors
     ? "Error!"
     : loading
     ? "Loading..."
-    : data.launchesPast.map(({ mission_name, details, links }) => (
+    : data.launchesPast.map(({ id, mission_name, details, links }) => (
         <Card
-         key={mission_name}
+         key={id}
          title={mission_name}
          details={details}
          image={(links.flickr_images)}
+         article={(links.article_link)}
         />
-      ));
+      ))
+  )
 }
 
 export default Launches;
