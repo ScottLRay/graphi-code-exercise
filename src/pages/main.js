@@ -29,9 +29,9 @@ function Launches() {
         <Card
          key={id}
          title={mission_name}
-         details={details}
-         image={(links.flickr_images=== 0) ? (<h2>no results</h2>) : (links.mission_patch)}
-         article={(links.article_link)}
+         details={(details === null ? <h5>coming soon</h5> : details )}
+         image={(links.mission_patch === null ? links.flickr_images : links.mission_patch)}
+         article={(links.article_link === null ? links.video_link : links.article_link )}
         />
       ))
   )
